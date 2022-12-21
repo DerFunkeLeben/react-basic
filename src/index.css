@@ -17,6 +17,16 @@ code {
   font-family: inherit;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
 :root {
   --blue_1: #826aff;
   --blue_2: #37336e;
@@ -29,9 +39,10 @@ input, textarea {
   outline: none;
   border: 1px solid var(--blue_3);
   transition: border 0.3s;
-  padding: 5px 10px;
+  padding: 7.5px 15px;
   border-radius: 5px;
   resize: none;
+  font-size: 17px;
 }
 
 button {
@@ -43,6 +54,8 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 17px;
+
 }
 
 button:hover {
