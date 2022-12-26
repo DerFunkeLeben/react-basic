@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-import TodoListWrap from './components/TodoListWrap'
+import TodoList from './components/TodoList'
 import TodoDetails from './components/TodoDetails'
 
 import todosData from './temp.json'
@@ -36,9 +36,8 @@ function App() {
     }
 
     const handleSave = todoData => {
-        const newTodos = todos.map(todo => (todo.id === activeTodoId ? todoData : todo))
+        setTodos(prev => prev.map(todo => (todo.id === activeTodoId ? todoData : todo)))
 
-        setTodos(newTodos)
         setActiveTodo(null)
     }
 
@@ -49,20 +48,20 @@ function App() {
     return (
         <div className='AppWrapper'>
             <div className='App'>
-                <TodoListWrap
+                <TodoList
                     todos={todos}
                     handleAdd={handleAdd}
                     handleDelete={handleDelete}
                     handleEdit={handleEdit}
                     activeTodoId={activeTodoId}
                 />
-                {activeTodo ? (
+                {!!activeTodo && (
                     <TodoDetails
                         todo={activeTodo}
                         handleSave={handleSave}
                         handleCancel={handleCancel}
                     />
-                ) : null}
+                )}
             </div>
         </div>
     )

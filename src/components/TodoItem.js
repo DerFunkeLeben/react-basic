@@ -8,10 +8,14 @@ const TodoItem = ({ todo, handleDelete, handleEdit, isActive }) => {
         handleDelete(id)
     }
 
+    const editTodo = () => {
+        handleEdit(id)
+    }
+
     return (
         <li
             className={`task-wrapper ${isActive ? 'task-wrapper--active' : ''}`}
-            onClick={() => handleEdit(id)}
+            onClick={editTodo}
         >
             <p className='task-wrapper__title' data-placeholder='Настройте задачу ...'>
                 {title}

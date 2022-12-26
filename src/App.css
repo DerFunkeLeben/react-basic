@@ -8,7 +8,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 30px;
 }
 
 .details-wrapper,
@@ -31,6 +30,7 @@
 .details-wrapper {
   position: sticky;
   top: 50px;
+  margin-left: 30px;
 }
 
 .details-wrapper__title {
@@ -45,7 +45,7 @@
 }
 
 
-.details-wrapper__btns_wrap {
+.details-wrapper__btns-wrap {
   display: flex;
   align-items: center;
   width: 100%;
@@ -114,7 +114,7 @@
   width: 100%;
 }
 
-.list-wrapper__empty_caption {
+.list-wrapper__empty-caption {
   margin: 30px 0;
 }
 

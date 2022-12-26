@@ -12,6 +12,10 @@ const TodoDetails = ({ todo, handleSave, handleCancel }) => {
         }))
     }
 
+    const saveTodo = () => {
+        handleSave(todoData)
+    }
+
     useEffect(() => {
         setTodoData(todo)
     }, [todo])
@@ -33,14 +37,11 @@ const TodoDetails = ({ todo, handleSave, handleCancel }) => {
                 placeholder='Описание'
             />
 
-            <div className='details-wrapper__btns_wrap'>
+            <div className='details-wrapper__btns-wrap'>
                 <button className='details-wrapper__btn' onClick={handleCancel}>
                     Cancel
                 </button>
-                <button
-                    className='details-wrapper__btn'
-                    onClick={() => handleSave(todoData)}
-                >
+                <button className='details-wrapper__btn' onClick={saveTodo}>
                     Save
                 </button>
             </div>
