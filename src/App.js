@@ -9,9 +9,9 @@ import './App.css'
 
 function App() {
     const [todos, setTodos] = useState(todosData)
-    const [activeTodoId, setActiveTodo] = useState()
+    const [activeTodo, setActiveTodo] = useState()
 
-    const activeTodo = todos.find(todo => todo.id === activeTodoId)
+    const activeTodoId = activeTodo?.id
 
     const handleAdd = () => {
         const newTodo = {
@@ -20,7 +20,7 @@ function App() {
             description: '',
         }
 
-        setTodos(prev => [...prev, newTodo])
+        setActiveTodo(newTodo)
     }
 
     const handleDelete = id => {
@@ -32,11 +32,18 @@ function App() {
     }
 
     const handleEdit = id => {
-        setActiveTodo(id)
+        setActiveTodo(todos.find(todo => todo.id === id))
     }
 
     const handleSave = todoData => {
-        setTodos(prev => prev.map(todo => (todo.id === activeTodoId ? todoData : todo)))
+        setTodos(prev => {
+            const index = prev.findIndex(todo => todo.id === activeTodoId)
+            if (index > -1) {
+                prev[index] = todoData
+                return prev
+            }
+            return [...prev, todoData]
+        })
 
         setActiveTodo(null)
     }
@@ -46,23 +53,21 @@ function App() {
     }
 
     return (
-        <div className='AppWrapper'>
-            <div className='App'>
-                <TodoList
-                    todos={todos}
-                    handleAdd={handleAdd}
-                    handleDelete={handleDelete}
-                    handleEdit={handleEdit}
-                    activeTodoId={activeTodoId}
+        <div className='App'>
+            <TodoList
+                todos={todos}
+                handleAdd={handleAdd}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                activeTodoId={activeTodoId}
+            />
+            {!!activeTodo && (
+                <TodoDetails
+                    todo={activeTodo}
+                    handleSave={handleSave}
+                    handleCancel={handleCancel}
                 />
-                {!!activeTodo && (
-                    <TodoDetails
-                        todo={activeTodo}
-                        handleSave={handleSave}
-                        handleCancel={handleCancel}
-                    />
-                )}
-            </div>
+            )}
         </div>
     )
 }

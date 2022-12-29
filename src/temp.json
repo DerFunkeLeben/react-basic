@@ -1,32 +1,27 @@
 [
     {
         "id": "0",
-        "title": "12 aa",
-        "description": "description text 123123123"
+        "title": "Сон",
+        "description": "Спать 8 часов"
     },
     {
         "id": "1",
-        "title": "12 23656aa",
-        "description": "description text 123123123"
+        "title": "Перекус",
+        "description": "Обед - рис с курицей"
     },
     {
         "id": "2",
-        "title": "12 23aa",
-        "description": "description text 123123123"
+        "title": "Прогулка",
+        "description": "Прогуляться в парк"
     },
     {
         "id": "3",
-        "title": "123 aa",
-        "description": "description text 123123123"
-    },
-    {
-        "id": "4",
-        "title": "12 a1223a",
-        "description": "description text 123123123"
+        "title": "Купить продукты",
+        "description": "Хлеб, молоко, творог"
     },
     {
         "id": "5",
-        "title": "",
-        "description": "description text 123123123"
+        "title": "Сходить в музей",
+        "description": "Пушкинский музей 19:00"
     }
 ]

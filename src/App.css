@@ -1,13 +1,10 @@
-.AppWrapper {
-  background-color: #ddd;
-}
-
 .App {
   padding: 50px;
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  background-color: #ddd;
 }
 
 .details-wrapper,
