@@ -61,7 +61,7 @@ function App() {
                 handleEdit={handleEdit}
                 activeTodoId={activeTodoId}
             />
-            {!!activeTodo && (
+            {Boolean(activeTodo) && (
                 <TodoDetails
                     todo={activeTodo}
                     handleSave={handleSave}
