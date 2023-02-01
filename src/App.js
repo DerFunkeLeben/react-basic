@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 import TodoList from './components/TodoList'
 import TodoDetails from './components/TodoDetails'
 
-import todosData from './temp.json'
+import { upsertTodo, deleteTodo, getTodos } from './api/firebase'
 import './App.css'
 
 function App() {
-    const [todos, setTodos] = useState(todosData)
+    const [todos, setTodos] = useState([])
     const [activeTodo, setActiveTodo] = useState()
 
     const activeTodoId = activeTodo?.id
@@ -23,7 +23,8 @@ function App() {
         setActiveTodo(newTodo)
     }
 
-    const handleDelete = id => {
+    const handleDelete = async id => {
+        await deleteTodo(id)
         setTodos(prev => prev.filter(todo => todo.id !== id))
 
         if (activeTodoId === id) {
@@ -35,7 +36,8 @@ function App() {
         setActiveTodo(todos.find(todo => todo.id === id))
     }
 
-    const handleSave = todoData => {
+    const handleSave = async todoData => {
+        await upsertTodo(todoData)
         setTodos(prev => {
             const index = prev.findIndex(todo => todo.id === activeTodoId)
             if (index > -1) {
@@ -44,13 +46,21 @@ function App() {
             }
             return [...prev, todoData]
         })
-
         setActiveTodo(null)
     }
 
     const handleCancel = () => {
         setActiveTodo(null)
     }
+
+    const init = async () => {
+        const allTodos = await getTodos()
+        setTodos(allTodos)
+    }
+
+    useEffect(() => {
+        init()
+    }, [])
 
     return (
         <div className='App'>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 
 const TodoDetails = ({ todo, handleSave, handleCancel }) => {
     const [todoData, setTodoData] = useState(todo)
@@ -49,4 +49,4 @@ const TodoDetails = ({ todo, handleSave, handleCancel }) => {
     )
 }
 
-export default TodoDetails
+export default memo(TodoDetails)
