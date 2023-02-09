@@ -1,0 +1,27 @@
+.details-wrapper {
+    position: sticky;
+    top: 50px;
+    margin-left: 30px;
+}
+
+.details-wrapper__title {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.details-wrapper__text {
+    margin-bottom: 20px;
+    width: 100%;
+    min-height: 200px;
+}
+
+.details-wrapper__btns-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.details-wrapper__btns-wrap > *:not(:last-child) {
+    margin-right: 20px;
+}

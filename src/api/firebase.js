@@ -7,6 +7,7 @@ import {
     setDoc,
     deleteDoc,
 } from 'firebase/firestore/lite'
+import { toast } from 'react-toastify'
 import firebaseConfig from './config'
 
 const COL_NAME = 'todos'
@@ -21,7 +22,9 @@ export const upsertTodo = async todoData => {
         const docRef = doc(db, COL_NAME, id)
 
         await setDoc(docRef, dataToSend)
+        toast('Изменения сохранены!')
     } catch (e) {
+        toast.error(`Не удалось сохранить задачу 😔`)
         console.error(e)
     }
 }
@@ -30,7 +33,9 @@ export const deleteTodo = async id => {
     try {
         const docRef = doc(db, COL_NAME, id)
         await deleteDoc(docRef)
+        toast('Задача удалена!')
     } catch (e) {
+        toast.error(`Не удалось удалить задачу 😔`)
         console.error(e)
     }
 }
@@ -45,6 +50,7 @@ export const getTodos = async () => {
 
         return todos
     } catch (e) {
+        toast.error(`Не удалось получить список задач 😔`)
         console.error(e)
     }
 }

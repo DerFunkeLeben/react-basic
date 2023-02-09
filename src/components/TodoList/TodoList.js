@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
-import TodoItem from './TodoItem'
+import TodoItem from '../TodoItem/TodoItem'
+import './TodoList.scss'
 
 const TodoList = ({ todos, handleAdd, activeTodoId, ...props }) => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -17,7 +18,7 @@ const TodoList = ({ todos, handleAdd, activeTodoId, ...props }) => {
     const listIsEmpty = !filteredTodos.length
 
     return (
-        <div className='list-wrapper'>
+        <div className='wrapper list-wrapper'>
             <div className='list-wrapper__header'>
                 <input
                     className='list-wrapper__search'
@@ -25,7 +26,7 @@ const TodoList = ({ todos, handleAdd, activeTodoId, ...props }) => {
                     value={searchQuery}
                     placeholder='Поиск'
                 />
-                <div className='list-wrapper__btn' onClick={handleAdd}>
+                <div className='wrapper__btn list-wrapper__btn' onClick={handleAdd}>
                     &times;
                 </div>
             </div>

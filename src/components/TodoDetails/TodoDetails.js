@@ -1,4 +1,5 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState } from 'react'
+import './TodoDetails.scss'
 
 const TodoDetails = ({ todo, handleSave, handleCancel }) => {
     const [todoData, setTodoData] = useState(todo)
@@ -21,7 +22,7 @@ const TodoDetails = ({ todo, handleSave, handleCancel }) => {
     }, [todo])
 
     return (
-        <div className='details-wrapper'>
+        <div className='wrapper details-wrapper'>
             <input
                 className='details-wrapper__title'
                 onChange={handleFieldChange}
@@ -38,7 +39,10 @@ const TodoDetails = ({ todo, handleSave, handleCancel }) => {
             />
 
             <div className='details-wrapper__btns-wrap'>
-                <button className='details-wrapper__btn' onClick={handleCancel}>
+                <button
+                    className='details-wrapper__btn'
+                    onClick={handleCancel}
+                >
                     Cancel
                 </button>
                 <button className='details-wrapper__btn' onClick={saveTodo}>
@@ -49,4 +53,4 @@ const TodoDetails = ({ todo, handleSave, handleCancel }) => {
     )
 }
 
-export default memo(TodoDetails)
+export default TodoDetails

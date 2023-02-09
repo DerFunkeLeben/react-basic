@@ -1,0 +1,32 @@
+.task-wrapper {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    padding-right: 60px;
+    margin-top: 30px;
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    &--active {
+        border: 1px solid var(--blue_1);
+    }
+}
+
+.task-wrapper__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+
+    &:empty:before {
+        content: attr(data-placeholder);
+        color: gray;
+    }
+}
+
+.task-wrapper__btn {
+    transform: translateY(-50%);
+    color: red;
+}

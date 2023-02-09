@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-import TodoList from './components/TodoList'
-import TodoDetails from './components/TodoDetails'
+import TodoList from './components/TodoList/TodoList'
+import TodoDetails from './components/TodoDetails/TodoDetails'
 
 import { upsertTodo, deleteTodo, getTodos } from './api/firebase'
 import './App.css'
