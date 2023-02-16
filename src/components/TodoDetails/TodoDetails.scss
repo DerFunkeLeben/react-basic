@@ -22,6 +22,6 @@
     justify-content: flex-end;
 }
 
-.details-wrapper__btns-wrap > *:not(:last-child) {
+.details-wrapper__btn:not(:last-child) {
     margin-right: 20px;
 }

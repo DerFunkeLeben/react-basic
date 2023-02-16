@@ -1,21 +1,27 @@
 import React, { useState } from 'react'
 
 import TodoItem from '../TodoItem/TodoItem'
+import Loader from '../Loader/Loader'
+
 import './TodoList.scss'
 
-const TodoList = ({ todos, handleAdd, activeTodoId, ...props }) => {
+const TodoList = ({ todos, handleAdd, activeTodoId, isLoading, ...props }) => {
     const [searchQuery, setSearchQuery] = useState('')
 
     const handleSearchChange = e => {
         setSearchQuery(e.target.value)
     }
 
+    // был коммент делать запрос на фильтрованные туду
+    // не понимаю зачем, если мы и так уже имеем полный их лист
+    // и кмк проще его отфильтровать здесь, чем получать всю эту махину с сервера
+    // если бы получали порционно, базару нет - нужно делать запрос
     const filteredTodos = todos.filter(todo => {
         const titleL = todo.title.toLowerCase()
         return titleL.includes(searchQuery)
     })
 
-    const listIsEmpty = !filteredTodos.length
+    const listIsEmpty = !isLoading && !filteredTodos.length
 
     return (
         <div className='wrapper list-wrapper'>
@@ -30,6 +36,8 @@ const TodoList = ({ todos, handleAdd, activeTodoId, ...props }) => {
                     &times;
                 </div>
             </div>
+
+            {isLoading && <Loader />}
 
             {listIsEmpty ? (
                 <p className='list-wrapper__empty-caption'>No todos...</p>

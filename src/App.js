@@ -10,8 +10,17 @@ import './App.css'
 function App() {
     const [todos, setTodos] = useState([])
     const [activeTodo, setActiveTodo] = useState()
+    const [isLoading, setLoading] = useState(true)
 
     const activeTodoId = activeTodo?.id
+
+    const initTodoList = async () => {
+        setLoading(true)
+        const allTodos = await getTodos()
+        setLoading(false)
+
+        setTodos(allTodos)
+    }
 
     const handleAdd = () => {
         const newTodo = {
@@ -25,7 +34,7 @@ function App() {
 
     const handleDelete = async id => {
         await deleteTodo(id)
-        setTodos(prev => prev.filter(todo => todo.id !== id))
+        await initTodoList()
 
         if (activeTodoId === id) {
             setActiveTodo(null)
@@ -38,14 +47,8 @@ function App() {
 
     const handleSave = async todoData => {
         await upsertTodo(todoData)
-        setTodos(prev => {
-            const index = prev.findIndex(todo => todo.id === activeTodoId)
-            if (index > -1) {
-                prev[index] = todoData
-                return prev
-            }
-            return [...prev, todoData]
-        })
+        await initTodoList()
+
         setActiveTodo(null)
     }
 
@@ -53,13 +56,8 @@ function App() {
         setActiveTodo(null)
     }
 
-    const init = async () => {
-        const allTodos = await getTodos()
-        setTodos(allTodos)
-    }
-
     useEffect(() => {
-        init()
+        initTodoList()
     }, [])
 
     return (
@@ -70,6 +68,7 @@ function App() {
                 handleDelete={handleDelete}
                 handleEdit={handleEdit}
                 activeTodoId={activeTodoId}
+                isLoading={isLoading}
             />
             {Boolean(activeTodo) && (
                 <TodoDetails
